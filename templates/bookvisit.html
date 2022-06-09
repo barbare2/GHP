@@ -1,0 +1,74 @@
+{%  extends 'base.html' %}
+{% block title %} დაჯავნშნა {%  endblock %}
+
+{% block content %}
+<div class="div-gradient">
+
+        <h1 class="clinics">კლინიკები</h1>
+<!--        <div class="clinic-info-wrapper">-->
+<!--            <div class="photo-title-wrapper">-->
+<!--                <div class="img-rate-wrapper">-->
+<!--                    <img src="{{url_for('static', filename='img/todua-img.png')}}">-->
+<!--                    <div class="starrate-wrapper">-->
+<!--                        <img src="{{url_for('static', filename='img/star.svg')}}">-->
+<!--                        <img src="{{url_for('static', filename='img/star.svg')}}">-->
+<!--                        <img src="{{url_for('static', filename='img/star.svg')}}">-->
+<!--                        <img src="{{url_for('static', filename='img/star.svg')}}">-->
+<!--                        <img src="{{url_for('static', filename='img/star.svg')}}">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="clinic-title-wrapper">-->
+<!--                    <h class="clinic-title">აკადემიკოს ფრიდონ თოდუას სამედიცინო ცენტრი</h>-->
+<!--                    <div class="clinic-services-wrapper">-->
+<!--                        <p class="clinic-services">ალერგოლოგია-იმუნოლოგია</p>-->
+<!--                        <p class="clinic-services">გინეკოლოგია</p>-->
+<!--                        <p class="clinic-services">ენდოკრინოლოგია</p>-->
+<!--                        <p class="clinic-services">კარდიოლოგია</p>-->
+<!--                    </div>-->
+<!--                    <div class="adress-button-wrapper">-->
+<!--                        <div class="misamarti-wrapper">-->
+<!--                            <h class="misamarti">მისამართი</h>-->
+<!--                            <p class="misamarti-text">თბილისი, თევდორე მღვდლის ქ.#13</p>-->
+<!--                        </div>-->
+<!--                        <div class="srulad-button">-->
+<!--                            <a href="clinic-full-info.html"><p class="srulad">სრულად</p></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        {% for i in categories %}
+            <div class="clinic-info-wrapper">
+            <div class="photo-title-wrapper">
+                <div class="img-rate-wrapper">
+                    <img class='clinic_img' src={{ img_urls[i] }}>
+                    <div class="starrate-wrapper">
+                         <p class="ranking"> {{ clinic_ranks[i] }} </p>
+
+                        <img class='star' src="{{url_for('static', filename='img/star.png')}}">
+                    </div>
+                </div>
+                <div class="clinic-title-wrapper">
+                    <h class="clinic-title">{{ clinic_names[i] }}</h>
+                    <div class="clinic-services-wrapper">
+
+                        {% for each in categories[i] %}
+                                <p class="clinic-services">{{each}}</p>
+                            {% endfor %}
+                    </div>
+                    <div class="adress-button-wrapper">
+                        <div class="misamarti-wrapper">
+                            <h class="misamarti">მისამართი</h>
+                            <p class="misamarti-text">{{ clinic_addresses[i] }}</p>
+                        </div>
+                        <div class="srulad-button">
+                            <a href="clinic-full-info.html"><p class="srulad">სრულად</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}

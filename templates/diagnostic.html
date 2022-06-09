@@ -1,0 +1,19 @@
+{%  extends 'base.html' %}
+{% block title %} დიაგნოზტიკა {%  endblock %}
+
+{% block content %}
+<div class="div-gradient">
+
+        <div class="disorder-box-wrapper">
+            <div class="disorder-box">
+                <img class="frame-brain" src="{{url_for('static', filename='img/wireframe-brain.svg')}}">
+                <div class="health-div"><p class="health">მენტალური ჯანმრთელობა</p></div>
+            </div>
+            <div class="disorder-box">
+                <img class="frame-body" src="{{url_for('static', filename='img/wireframe-body.svg')}}">
+                <a href="{{url_for('physical')}}"><div class="health-div"><p class="health">ფიზიკური ჯანმრთეობა</p></div></a>
+            </div>
+        </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,46 @@
+{%  extends 'base.html' %}
+{% block title %} რეგისტრაცია {%  endblock %}
+
+{% block content %}
+    <form method="post">
+<div class="div-gradient">
+
+    <div class="div-gradient gradient-height center">
+      <div>
+        <h1 class="authorization-title padding-top-norm">რეგისტრაცია</h1>
+      </div>
+      <div>
+        <form method="post">
+          <div class="form">
+            <p class="label">სახელი, გვარი</p>
+            <input type="text" class="input" name="name" required id="name" />
+            <label for="name"></label>
+
+            <p class="label">
+              ელექტრონული ფოსტა </p>
+              <input type="email" class="input" name="email" required id="email" />
+              <label for="email"></label>
+            </p>
+
+            <p class="label">
+              შეიყვანეთ პაროლი</p>
+              <input type="password" class="input" name="password" required id="password" />
+              <label for="password"></label>
+            </p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                  <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+            <button type="submit" class="btn-primary">რეგისტრაცია</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+    </form>
+{% endblock %}

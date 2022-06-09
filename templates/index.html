@@ -1,0 +1,87 @@
+{%  extends 'base.html' %}
+{% block title %} GHP {%  endblock %}
+
+{% block content %}
+
+<div class="div-gradient">
+
+        <div class="container">
+            <div class="social">
+                <a class="rotate" href="https://www.facebook.com/General-Hospital-Portal-104475958900390"> Facebook </a>
+                <a class="rotate" href="https://www.instagram.com/generalhospitalportal5/"> Instagram </a>
+                <a class="rotate" href="https://www.youtube.com/channel/UCdxeB21AD_ziE0HbzRqXMjw"> Youtube </a>
+            </div>
+
+            <img class="logo" src="../static/img/logo.png" alt="">
+        </div>
+
+
+        <div class="grid-items">
+            <div class="first-grid-item">
+                <p class="grid">
+                    ჯანდაცვის სერვისი, რომელიც ყველასთვის ხელმისაწვდომია
+                </p>
+                <div class="about-us">
+                    <h3> <a class='index-link' href=" {{url_for('about_us')}}"> ჩვენს შესახებ </a></h3>
+                </div>
+
+            </div>
+            <div class="second-grid-item">
+                <p class="grid">
+                    ონლაინ დაჯავშნისთვის გთხოვთ გაიაროთ რეგისტრაცია
+                </p>
+                <div class="registration">
+                    <h3><a class='index-link' href=" {{url_for('registration')}}"> რეგისტრაცია </a>  </h3>
+                </div>
+
+            </div>
+            <div class="third-grid-item">
+                <p class="grid">
+                    ონლაინ დიაგნოზტიკა სიმპტომების მიხედვით
+                </p>
+                <div class="start">
+                    <h3><a class='index-link' href="{{url_for('diagnostic')}}"> დაწყება </a> </h3>
+                </div>
+
+            </div>
+            <div class="fourth-grid-item">
+                <p class="grid">
+                    ექიმთან ვიზიტის ონლაინ დაჯავშნა
+                </p>
+                <div class="reserv">
+                    <h3><a class='index-link'  href="{{url_for('book_visit')}}"> დაჯავშნა </a></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-scroll-div">
+            <div>
+                <button class="icon" onclick="scrollr()"> <i class="fas fa-angle-double-left"></i></button>
+            </div>
+            <div class="cover">
+                <div class="scroll-images">
+                    {% for i in img_urls %}
+                    <div class="child"><img class="child-img" src="{{ i }}" alt=""></div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div>
+                <button class="icon" onclick="scrolll()"> <i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </div>
+</div>
+
+<script>
+    function scrolll() {
+        var left = document.querySelector(".scroll-images");
+        left.scrollBy(350, 0)
+    }
+
+    function scrollr() {
+        var right = document.querySelector(".scroll-images");
+        right.scrollBy(-350, 0)
+    }
+</script>
+
+{% endblock %}

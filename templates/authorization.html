@@ -1,0 +1,24 @@
+{%  extends 'base.html' %}
+{% block title %} ავტორიზაცია {%  endblock %}
+
+{% block content %}
+
+    <div class="div-gradient gradient-height center">
+      <div>
+        <h1 class="authorization-title padding-top-big">ავტორიზაცია</h1>
+      </div>
+      <div>
+        <div class="form">
+          <p class="label">ელექტრონული ფოსტა</p>
+          <input type="email" class="input" required id="email" />
+          <label for="email"></label>
+
+          <p class="label">პაროლი</p>
+          <input type="password" class="input" required id="password" />
+          <label for="password"></label>
+
+          <a class="btn" href="{{url_for('success_authorization')}}">ავტორიზაცია</a>
+        </div>
+      </div>
+    </div>
+{% endblock %}

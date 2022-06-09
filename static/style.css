@@ -1,0 +1,898 @@
+.body {
+  position: relative;
+  /* height:2724px; */
+  background: hsl(184, 100%, 17%);
+  background-image: url(../static/img/bg-lights.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.div-gradient {
+  width: 100%;
+  background: linear-gradient(
+    193.48deg,
+    #030f14 0%,
+    rgba(21, 54, 73, 0.2) 49.95%,
+    #030f14 100%
+  );
+  backdrop-filter: blur(4px);
+}
+.header-wrapper {
+  position: sticky;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(
+    94.18deg,
+    rgba(3, 34, 36, 0.5) 0%,
+    rgba(3, 34, 36, 0.5) 100%
+  );
+  backdrop-filter: blur(50px);
+}
+.logo-text {
+  max-width: 374px;
+  margin-left: 55px;
+  margin-top: 30px;
+  width: 208px;
+  height: 129px;
+  font-family: "Georama";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+  background: linear-gradient(
+    109.84deg,
+    #63ffa1 0%,
+    rgba(255, 255, 255, 0.3) 98.36%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /*background-clip: text;*/
+  font-family: "Outfit", sans-serif;
+  /* text-fill-color: transparent; */
+}
+.hospital {
+  padding-left: 20%;
+}
+.portal {
+  padding-left: 50%;
+  font-weight: 400;
+}
+.navigation {
+  display: flex;
+  max-width: 742px;
+}
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  width: 742px;
+  align-items: center;
+}
+.nav-element {
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  border: 2px solid transparent;
+  transition: all 0.2s linear 0.3s;
+  padding-bottom: 5px;
+  font-family: "BPG Nino Mtavruli", sans-serif;
+}
+.nav-element:hover {
+  border-bottom-color: white;
+}
+.in-div {
+  width: 318px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.log-in {
+  text-align: center;
+  color: white;
+  width: 154px;
+  height: 38px;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #009e95;
+  border-radius: 10px;
+  line-height: 2.5;
+  font-family: "BPG Nino Mtavruli", sans-serif;
+}
+.sign-in {
+  text-align: center;
+  color: white;
+  width: 154px;
+  height: 38px;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #009e95;
+  border-radius: 10px;
+  line-height: 2.5;
+  font-family: "BPG Nino Mtavruli", sans-serif;
+}
+
+.nav-line {
+  position: absolute;
+  top: 105px;
+  width: 1178px;
+  margin-left: 507px;
+  margin-top: 0;
+  margin-bottom: 0;
+  /*text-align: right;*/
+  /*background: linear-gradient(*/
+  /*  94.18deg,*/
+  /*  rgba(3, 34, 36, 0.5) 0%,*/
+  /*  rgba(3, 34, 36, 0.5) 100%*/
+  /*);*/
+  /*backdrop-filter: blur(50px);*/
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 70px;
+  padding-top: 250px;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.logo {
+  margin: auto;
+}
+
+.rotate {
+  transform: rotate(-90deg);
+  margin-top: 24px;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.grid-items {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 100px;
+  row-gap: 100px;
+  justify-content: space-around;
+  margin: auto;
+  margin-top: 250px;
+}
+
+/* grid */
+
+.first-grid-item {
+  width: 600px;
+  height: 450px;
+  background: linear-gradient(
+    118.18deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  border-radius: 50px;
+}
+
+.second-grid-item {
+  width: 600px;
+  height: 450px;
+  background: linear-gradient(
+    118.18deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  border-radius: 50px;
+}
+
+.third-grid-item {
+  width: 600px;
+  height: 450px;
+  background: linear-gradient(
+    118.18deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  border-radius: 50px;
+}
+
+.fourth-grid-item {
+  width: 600px;
+  height: 450px;
+  background: linear-gradient(
+    118.18deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  border-radius: 50px;
+}
+
+.grid {
+  width: 500px;
+  height: 120px;
+  font-weight: 400;
+  font-size: 40px;
+  color: #ffffff;
+  margin: auto;
+  margin-top: 70px;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  margin: 20px 0px 20px 0px;
+}
+
+.about-us,
+.registration,
+.start,
+.reserv {
+  border: 4px solid #009e95;
+  border-radius: 20px;
+  width: 191px;
+  margin: auto;
+  margin-top: 70px;
+  text-align: center;
+}
+
+/* end grid */
+
+.main-footer {
+  width: 100%;
+  height: 360px;
+  padding: 22px 70px 0 70px;
+  background: linear-gradient(
+    94.18deg,
+    rgba(3, 34, 36, 0.5) 0%,
+    rgba(3, 34, 36, 0.5) 100%
+  );
+  backdrop-filter: blur(50px);
+}
+.top-footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.ft-textarea-title {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+.ft-textarea {
+  max-width: 648px;
+  width: 100%;
+  background: #d9d9d9;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+.ft-wt {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #b4b4b4;
+}
+.founder-contact {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.mail-adress {
+  font-family: "Georama", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-bottom: 34px;
+}
+.contact-divider {
+  border-left: 0.5px solid white;
+  height: 20px;
+}
+.number {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-bottom: 34px;
+}
+.ft-divider {
+  border: 1px solid #009e95;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.bottom-ft-text {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #b4b4b4;
+  margin-bottom: 2px;
+}
+.create-year {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+.bottom-ft-flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.icon-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 145px;
+  justify-content: space-between;
+  align-items: center;
+}
+.sm-icon-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  background: #074b50;
+}
+.sm-icon-fb {
+  width: 9.33px;
+  height: 17.11px;
+  color: #ffffff;
+}
+.sm-icon {
+  position: absolute;
+  width: 19.44px;
+  color: #ffffff;
+}
+
+/* javascript main.html */
+
+.main-scroll-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 300px;
+}
+
+.cover {
+  position: relative;
+  width: 90%;
+  height: 50%;
+}
+
+.cover::before {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  z-index: 99;
+  height: 100%;
+  width: 150px;
+}
+
+.cover::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  z-index: 99;
+  height: 100%;
+  width: 150px;
+}
+
+.scroll-images {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  overflow: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.child {
+  min-width: 200px;
+  height: 200px;
+  margin: 1px 10px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.scroll-images::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.child-img {
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  color: darkslategray;
+  background-color: black;
+  font-size: 50px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: chartreuse;
+}
+
+/* end javascript main.html */
+
+/* about us page */
+.introduce-div {
+  width: 852px;
+  padding-left: 70px;
+  padding-top: 150px;
+}
+.aboutus-title {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 64px;
+  color: #ffffff;
+  margin-bottom: 33px;
+}
+.aboutus-text {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  color: #b4b4b4;
+}
+.profiles-wrapper {
+  width: 100%;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  margin-top: 90px;
+}
+.profile-name {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 37px;
+}
+
+/* ონლაინ დიაგნოზტიკა */
+.disorder-box-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 170px;
+  padding-top: 130px;
+  padding-bottom: 70px;
+}
+.disorder-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.health-div {
+  width: 215px;
+  height: 188px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #009e95;
+  border-radius: 30px;
+}
+.frame-brain {
+  margin-bottom: 88px;
+}
+.frame-body {
+  margin-bottom: 20px;
+}
+.health {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+}
+/* ფიზიკური ჯანმრთელობა */
+.Symptom-textarea-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding-left: 70px;
+  padding-top: 132px;
+  padding-bottom: 20px;
+  gap: 31px;
+}
+.Symptom-textarea {
+  display: block;
+  resize: none;
+  width: 593px;
+  border-radius: 10px;
+  font-size: 20px;
+  border: none;
+}
+.Symptom-textarea-button {
+  width: 52px;
+  height: 52px;
+  background-color: transparent;
+  border: 1px solid #009e95;
+}
+.output-logo-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 70px;
+}
+.answer-output {
+  width: 803px;
+  height: 220px;
+  border: 1px solid #00fff0;
+  margin: 55px 0 0 70px;
+}
+.physical-logo {
+  margin-right: 70px;
+}
+/* ვიზიტის ჩანიშვნა */
+
+.clinics {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  color: #ffffff;
+  padding: 123px 0 73px 70px;
+}
+.clinic-info-wrapper {
+  max-width: 1300px;
+  width: 100%;
+  height: 460px;
+  margin: 0 auto;
+  background: rgba(12, 172, 163, 0.15);
+  border-radius: 50px;
+  padding: 50px 75px;
+  margin-bottom: 60px;
+}
+.photo-title-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.img-rate-wrapper {
+  margin-right: 45px;
+  text-align: center;
+}
+.starrate-wrapper {
+  margin-left: 5px;
+  margin-top: 15px;
+}
+.clinic-title-wrapper {
+  width: 770px;
+  margin-top: 15px;
+
+}
+.clinic-title {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 32px;
+  color: #dadada;
+
+}
+.clinic-services-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 33px;
+
+
+}
+.clinic-services {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 2.5;
+  color: #ffffff;
+  background: #035a4b;
+  height: 36px;
+  text-align: center;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+.adress-button-wrapper {
+  width: 770px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 150px;
+
+}
+.misamarti {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ffffff;
+}
+.misamarti-text {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #b4b4b4;
+  margin-top: 23px;
+}
+.srulad-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 50px;
+  border: 1px solid #009e95;
+  border-radius: 10px;
+}
+.srulad {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 2;
+  color: #ffffff;
+}
+/* კლინკის სრული ინფოს გვერდი */
+.clinic-details-box-wrapper {
+  width: 754px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.clinic-details-box {
+  width: 178px;
+  height: 155px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #c5ffea;
+  border-radius: 30px;
+}
+.gap {
+  gap: 10px;
+}
+.clinic-details-box-number {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+}
+.margin-top {
+  margin-top: 63px;
+}
+.clinic-info-wrapper-height {
+  height: 515px;
+
+}
+.clinics-textic-info {
+  width: 1140px;
+  margin-left: 70px;
+}
+.informatsia-title {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  color: #dadada;
+  margin-bottom: 35px;
+  margin-top: 92px;
+}
+.clinics-textic-style {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #b4b4b4;
+  margin-bottom: 15px;
+}
+.no-margin {
+  margin-bottom: 0;
+}
+.komentari-border {
+  width: 500px;
+  height: 80px;
+  margin: 0 auto;
+  margin-top: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #009e95;
+  border-radius: 10px;
+}
+.komentari-style {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  color: #ffffff;
+}
+.komentari-textarea-div {
+  width: 1297px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 33px;
+}
+.komentari-textarea {
+  width: 1297px;
+  height: 40px;
+  border-radius: 10px;
+  resize: none;
+}
+.xz-div {
+  width: 1297px;
+  height: 350px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border: 1px solid #009e95;
+}
+/* ავტორიზაციის გვერდი */
+
+.authorization-title {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 64px;
+  color: #ffffff;
+}
+.gradient-height {
+  height: 100vh;
+}
+
+.input {
+  display: block;
+  width: 600px;
+  height: 85px;
+  /* margin-bottom: 80px; */
+  font-size: 25px;
+  border: none;
+  /* border-bottom: 3px solid transparent; */
+}
+.input:not(:last-child) {
+  margin-bottom: 80px;
+}
+.input:focus {
+  outline: none;
+  border-bottom: 6px solid #016f7f;
+}
+
+.input:focus:invalid {
+  border-bottom: 6px solid red;
+}
+.center {
+  position: relative;
+  text-align: center;
+}
+.form {
+  padding-top: 150px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.padding-top-big {
+  padding-top: 150px;
+}
+.label {
+  font-family: "BPG Nino Mtavruli";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #dadada;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.padding-top-norm {
+  padding-top: 130px;
+}
+.btn {
+  text-decoration: none;
+  font-family: "BPG Nino Mtavruli";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  /* identical to box height */
+
+  color: #ffffff;
+
+  border: 1px solid #009e95;
+  border-radius: 13px;
+  padding: 20px 35px;
+}
+.clinic_img {
+  width: 333px;
+}
+
+.ranking{
+  font-size: 35px;
+  line-height: 45px;
+  color: #fff;
+  display: inline;
+}
+
+.star {
+  width: 35px;
+}
+
+.index-link {
+  text-decoration: none;
+  font-family: 'BPG Nino Mtavruli';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.info{
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.error{
+  color: #f54f4f;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.btn-primary{
+    background-repeat:no-repeat;
+    width:250px;
+    height:50px;
+    cursor:pointer;
+    background-color:transparent;
+    border:1px solid #009e95;
+    font-size: 20px;
+    color: #ffffff;
+  border-radius: 13px;
+}

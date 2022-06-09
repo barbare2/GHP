@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a59b9b09ab.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../static/img/tab-icon.svg">
+    <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-nino-mtavruli/css/bpg-nino-mtavruli.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap" rel="stylesheet">
+    <title>{% block title %} Site {% endblock %}</title>
+    <link rel="stylesheet" href="../static/reset.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="">
+</head>
+<body class="body">
+    <div class="div-gradient">
+        <header class="header-wrapper">
+            <h class="logo-text"><a href="{{url_for('home')}}">General <span class="hospital">Hospital</span> <span class="portal">Portal</span></a>
+            </h>
+            <nav class="navigation">
+                <ul class="nav-bar">
+                    <a href="{{url_for('home')}}"><li class="nav-element">მთავარი</li></a>
+                    <a href="{{url_for('about_us')}}"><li class="nav-element">ჩვენს შესახებ</li></a>
+                    <a href="{{url_for('diagnostic')}}"><li class="nav-element">ონლაინ დიაგნოზტიკა</li></a>
+                    <a href="{{url_for('book_visit')}}"><li class="nav-element">ვიზიტის ჩანიშვნა</li></a>
+                </ul>
+            </nav>
+
+            <div class="in-div">
+                <a href="{{url_for('authorization')}}"><p class="log-in">ავტორიზაცია</p></a>
+                <a href="{{url_for('registration')}}"><p class="sign-in">რეგისტრაცია</p></a>
+            </div>
+
+        </header>
+        <hr class="nav-line" >
+
+        {% block content %} <h1></h1> {% endblock %}
+
+        <footer class="main-footer">
+           <div class="top-footer-wrapper">
+            <div>
+                <p class="ft-textarea-title">კითხვების არსებობის შემთხვევაში მოგვწერეთ აქ</p>
+                <textarea class="ft-textarea"></textarea>
+                <p class="ft-wt"><span style="color:#ffffff;">სამუშაო საათები:</span> 08:00 - 24:00 ორშაბათი - პარასკევი</p>
+            </div>
+            <div class="founder-contact-wrapper">
+                <h2 class="ft-textarea-title">კონტაქტი</h2>
+                <div class="founder-contact">
+                    <p class="mail-adress">mariam.chrikishvili.1@btu.edu.ge</p>
+                    <div class=contact-divider></div>
+                    <p class="number">+995 555 125 458</p>
+                </div>
+                <div class="founder-contact">
+                    <p class="mail-adress">barbare.tchumburidze.1@btu.edu.ge</p>
+                    <div class=contact-divider></div>
+                    <p class="number">+995 598 373 573</p>
+                </div>
+                <div class="founder-contact">
+                    <p class="mail-adress">nini.tsulaia.1@btu.edu.ge</p>
+                    <div class=contact-divider></div>
+                    <p class="number">+ 995 568 306 046</p>
+                </div>
+                <div class="founder-contact">
+                    <p class="mail-adress">konstantine.japaridze.1@btu.edu.ge</p>
+                    <div class=contact-divider></div>
+                    <p class="number">+995 551 200 899</p>
+                </div>
+            </div>
+           </div>
+           <div class="ft-divider"></div>
+           <div class="bottom-ft-flex">
+               <div>
+                <p class="bottom-ft-text">პროექტის ავტორები :  კონსტანტინე ჯაფარიძე, ბარბარე ჭუმბურიძე, ნინი წულაია, მარიამ ჭრიკიშვილი</p>
+                <p class="create-year">-© 2022</p>
+                <p class="bottom-ft-text">პროექტის დიზაინერი: გიორგი გოგილაშვილი</p>
+                <p class="bottom-ft-text">პროექტის დეველოპერები: ანდრია შიხიაშვილი, გიორგი გოგილაშვილი</p>
+               </div>
+               <div class="icon-wrapper">
+                   <a href="https://www.facebook.com/General-Hospital-Portal-104475958900390/"><div class="sm-icon-bg">
+                        <img class="sm-icon-fb" src="{{url_for('static', filename='icons/facebook.svg')}}">
+                    </div></a>
+                   <a href="https://www.instagram.com/generalhospitalportal5/"><div class="sm-icon-bg">
+                    <img class="sm-icon" src="{{url_for('static', filename='icons/instagram.svg')}}">
+                   </div></a>
+                   <a href="https://www.youtube.com/channel/UCdxeB21AD_ziE0HbzRqXMjw"><div class="sm-icon-bg">
+                    <img class="sm-icon" src="{{url_for('static', filename='icons/youtube.svg')}}">
+                   </div></a>
+               </div>
+           </div>
+        </footer>
+    </div>
+</body>
+</html>
