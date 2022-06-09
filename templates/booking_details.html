@@ -1,0 +1,37 @@
+{%  extends 'base.html' %}
+{% block title %} GHP {%  endblock %}
+
+{% block content %}
+
+    <div class="div-gradient ">
+        <form  class="booking_form">
+        <label class="booking_label" for="name">სახელი, გვარი</label>
+        <input class='booking_input' type="text" name="name" id="name"/>
+        <br/>
+
+        <br/>
+        <label class="booking_label" for="name">ელექტრონული ფოსტა</label>
+        <input class='booking_input'  type="email" name="email" id="email"/>
+        <br/>
+
+
+        <br/>
+        <label class="booking_label" for="name">ექიმის სახელი</label>
+        <input class='booking_input'  type="text" name="doctor" id="doc"/>
+        <br/>
+
+        <br/>
+        <label class="booking_label" for="date" >თარიღი</label>
+        <input class='booking_input'  type="date" name="date" id="date"/>
+        <br/>
+
+        <br/>
+        <label class="booking_label" for="time">საათი</label>
+        <input class='booking_input'  type="time" name="time" id="time"/>
+        <br/>
+
+        <button type="submit" class="btn-primary button-box">დაჯავშნა</button>
+</form>
+    </div>
+
+{% endblock %}

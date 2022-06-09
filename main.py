@@ -102,19 +102,19 @@ def registration():
 
 @app.route('/authorization')
 def authorization():
-    if request.method == 'POST':
-        acc_email = request.form['registered_acc_email']
-        acc_passsword = request.form['registered_acc_password']
-        if db.session.query(Users.email).filter_by(email=acc_email) and db.session.query(Users.password).filter_by(password=acc_passsword):
-            return render_template('aboutus.html')
-        else:
-            return render_template('bookvisit.html')
+    # if request.method == 'POST':
+    #     acc_email = request.form['registered_acc_email']
+    #     acc_passsword = request.form['registered_acc_password']
+    #     if db.session.query(Users.email).filter_by(email=acc_email) and db.session.query(Users.password).filter_by(password=acc_passsword):
+    #         return render_template('aboutus.html')
+    #     else:
+    #         return render_template('bookvisit.html')
 
     return render_template('authorization.html')
 
-@app.route('/success_authorization')
-def success_authorization():
-    return render_template('success.authorization.html')
+@app.route('/booking_details')
+def booking_details():
+    return render_template('booking_details.html')
 
 @app.route('/success_registration')
 def success_registration():

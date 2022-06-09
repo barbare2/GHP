@@ -806,6 +806,7 @@ h3 {
 .center {
   position: relative;
   text-align: center;
+
 }
 .form {
   padding-top: 150px;
@@ -895,4 +896,52 @@ h3 {
     font-size: 20px;
     color: #ffffff;
   border-radius: 13px;
+}
+
+.booking_label{
+  display: block;
+width: 300px;
+float: left;
+text-align: right;
+margin: 10px 5px;
+clear: left;
+  font-size: 20px;
+  color: #fff;
+}
+
+.booking_input {
+  margin: 10px 5px;
+  vertical-align: middle;
+  font-size: 15px;
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  border: none;
+  height: 30px;
+  width: 250px;
+
+}
+.booking_form {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  line-height: 30px;
+  padding-top: 40px;
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  height: 60vh;
+
+}
+.button-box {
+  width: 25%;
+   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 35px;
+}
+
+.booking_input:focus {
+  outline: none;
+  border-bottom: 4px solid #016f7f;
+}
+
+.booking_input:focus:invalid {
+  border-bottom: 4px solid red;
 }
