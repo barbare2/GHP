@@ -112,8 +112,21 @@ def authorization():
 
     return render_template('authorization.html')
 
-@app.route('/booking_details')
+@app.route('/booking_details', methods=['POST', 'GET'])
 def booking_details():
+    if request.method == 'POST':
+        name = request.form['name']
+        mail = request.form['email']
+        docname = request.form['doctor']
+        date = request.form['date']
+        time = request.form['time']
+        if name=='' or mail=='' or docname=='' or date=='' or time=='':
+            flash("აუცილებლად შეავსეთ ყველა ველი", 'error')
+        elif not name.isalpha() or docname.isalpha():
+            flash("სახელის გრაფა არ უნდა შეიცავდეს რიცხვებს", 'error')
+        else:
+            flash("თქვენ წარმატებით დაჯავშნეთ!", 'info')
+
     return render_template('booking_details.html')
 
 @app.route('/success_registration')
