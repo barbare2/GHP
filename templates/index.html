@@ -26,15 +26,22 @@
                 </div>
 
             </div>
+
+
+        {% if 'active_user' not in session %}
             <div class="second-grid-item">
                 <p class="grid">
                     ონლაინ დაჯავშნისთვის გთხოვთ გაიაროთ რეგისტრაცია
                 </p>
                 <div class="registration">
-                    <h3><a class='index-link' href=" {{url_for('registration')}}"> რეგისტრაცია </a>  </h3>
+                    <h3><a class='index-link' href="{{url_for('registration')}}"> რეგისტრაცია </a>  </h3>
                 </div>
 
             </div>
+        {% endif %}
+
+
+            {% if 'active_user' in session %}
             <div class="third-grid-item">
                 <p class="grid">
                     ონლაინ დიაგნოზტიკა სიმპტომების მიხედვით
@@ -42,8 +49,21 @@
                 <div class="start">
                     <h3><a class='index-link' href="{{url_for('diagnostic')}}"> დაწყება </a> </h3>
                 </div>
-
             </div>
+            {% endif %}
+
+             {% if 'active_user' not  in session %}
+            <div class="third-grid-item">
+                <p class="grid">
+                    ონლაინ დიაგნოზტიკა სიმპტომების მიხედვით
+                </p>
+                <div class="start">
+                    <h3><a class='index-link' href="{{url_for('access')}}"> დაწყება </a> </h3>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if 'active_user' in session %}
             <div class="fourth-grid-item">
                 <p class="grid">
                     ექიმთან ვიზიტის ონლაინ დაჯავშნა
@@ -52,6 +72,8 @@
                     <h3><a class='index-link'  href="{{url_for('book_visit')}}"> დაჯავშნა </a></h3>
                 </div>
             </div>
+            {% endif %}
+
         </div>
 
         <div class="main-scroll-div">

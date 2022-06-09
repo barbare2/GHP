@@ -112,20 +112,22 @@
   font-family: "BPG Nino Mtavruli", sans-serif;
 }
 
-.nav-line {
+.nav-line_0 {
   position: absolute;
   top: 105px;
   width: 1178px;
   margin-left: 507px;
   margin-top: 0;
   margin-bottom: 0;
-  /*text-align: right;*/
-  /*background: linear-gradient(*/
-  /*  94.18deg,*/
-  /*  rgba(3, 34, 36, 0.5) 0%,*/
-  /*  rgba(3, 34, 36, 0.5) 100%*/
-  /*);*/
-  /*backdrop-filter: blur(50px);*/
+}
+
+.nav-line_1 {
+  position: absolute;
+  top: 105px;
+  width: 988px;
+  margin-left: 507px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .container {
@@ -945,4 +947,20 @@ clear: left;
 
 .booking_input:focus:invalid {
   border-bottom: 4px solid red;
+}
+
+.access {
+  height: 50vh;
+  text-align: center;
+}
+
+.log_out {
+  cursor:pointer;
+    background-color:transparent;
+    border:1px solid #009e95;
+    font-size: 20px;
+    color: #ffffff;
+    border-radius: 13px;
+    padding: 10px 20px;
+
 }

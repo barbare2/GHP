@@ -132,13 +132,12 @@ def booking_details():
 
 @app.route('/logout')
 def log_out():
-    session.pop( 'active_user' )
+    session.pop( 'active_user', None )
     return render_template('index.html')
 
-#
-# app.route('/access')
-# def access():
-#     return render_template('access.html')
+@app.route('/access')
+def access():
+    return render_template('access.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

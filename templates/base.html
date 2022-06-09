@@ -35,13 +35,19 @@
 
             {% if 'active_user' in session %}
             <div class="in-div">
-                <a href="{{url_for('log_out')}}"><p class="btn-primary">გასვლა</p></a>
+                <a href="{{url_for('log_out')}}"><p class="log_out">გასვლა</p></a>
             </div>
             {% endif %}
 
 
         </header>
-        <hr class="nav-line" >
+        {% if 'active_user' not in session %}
+        <hr class="nav-line_0" >
+        {% endif %}
+
+        {% if 'active_user' in session %}
+        <hr class="nav-line_1" >
+        {% endif %}
 
         {% block content %} <h1></h1> {% endblock %}
 
