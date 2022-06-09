@@ -883,7 +883,8 @@ h3 {
   color: #f54f4f;
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 30px;
+  text-align: center;
+  padding: 15px 0 15px 0;
 }
 
 .btn-primary{
@@ -934,7 +935,7 @@ clear: left;
    position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 35px;
+  margin-top: 5px;
 }
 
 .booking_input:focus {

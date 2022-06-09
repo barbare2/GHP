@@ -30,7 +30,6 @@
         <input class='booking_input'  type="time" name="time" id="time"/>
         <br/>
 
-        <button type="submit" class="btn-primary button-box">დაჯავშნა</button>
             {% with messages = get_flashed_messages(with_categories=true) %}
               {% if messages %}
                 <ul class=flashes>
@@ -40,6 +39,9 @@
                 </ul>
               {% endif %}
             {% endwith %}
+
+        <button type="submit" class="btn-primary button-box">დაჯავშნა</button>
+
 </form>
     </div>
 

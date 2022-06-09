@@ -16,6 +16,17 @@
           <p class="label">პაროლი</p>
           <input type="password" class="input" id="password" name="registered_acc_password" required />
           <label for="password"></label>
+          <br/>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                  <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
           <button type="submit" class="btn-primary" >ავტორიზაცია</button>
         </div>
       </div>

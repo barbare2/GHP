@@ -21,7 +21,8 @@ class Users(db.Model):
 # b1 = Users(name='barbare', email='barbich222@gmail.com', password='giji2')
 # db.session.add(b1)
 # db.session.commit()
-
+#
+# print(exists)
 
 
 page = 1
@@ -100,15 +101,16 @@ def registration():
 
     return render_template('registration.html')
 
-@app.route('/authorization')
+@app.route('/authorization',  methods=['POST', 'GET'])
 def authorization():
-    # if request.method == 'POST':
-    #     acc_email = request.form['registered_acc_email']
-    #     acc_passsword = request.form['registered_acc_password']
-    #     if db.session.query(Users.email).filter_by(email=acc_email) and db.session.query(Users.password).filter_by(password=acc_passsword):
-    #         return render_template('aboutus.html')
-    #     else:
-    #         return render_template('bookvisit.html')
+    if request.method == 'POST':
+        acc_email = request.form['registered_acc_email']
+        acc_passsword = request.form['registered_acc_password']
+        if (db.session.query(Users.id).filter_by(email=acc_email).first()) is not None and (db.session.query(Users.id).filter_by(password=acc_passsword).first() is not None):
+            session['active_user'] = acc_email
+            return redirect(url_for('home'))
+        else:
+            flash("მომხმარებლის ელექტრონული ფოსტა ან პაროლი არასწორია!", 'error')
 
     return render_template('authorization.html')
 
@@ -122,29 +124,21 @@ def booking_details():
         time = request.form['time']
         if name=='' or mail=='' or docname=='' or date=='' or time=='':
             flash("აუცილებლად შეავსეთ ყველა ველი", 'error')
-        elif not name.isalpha() or docname.isalpha():
-            flash("სახელის გრაფა არ უნდა შეიცავდეს რიცხვებს", 'error')
         else:
             flash("თქვენ წარმატებით დაჯავშნეთ!", 'info')
 
     return render_template('booking_details.html')
 
-@app.route('/success_registration')
-def success_registration():
-    return render_template('success.registration.html')
+
+@app.route('/logout')
+def log_out():
+    session.pop( 'active_user' )
+    return render_template('index.html')
+
+#
+# app.route('/access')
+# def access():
+#     return render_template('access.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-#
-#
-#
-# #
-# # import sqlite3
-# # conn = sqlite3.connect('users.sqlite')
-# #
-# # cursor = conn.cursor()
-# # cursor.execute("""CREATE TABLE Users (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-# #                    name varchar(100),
-# #                     email varchar(50),
-# #                     password varchar(10))""")

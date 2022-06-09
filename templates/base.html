@@ -26,11 +26,19 @@
                     <a href="{{url_for('book_visit')}}"><li class="nav-element">ვიზიტის ჩანიშვნა</li></a>
                 </ul>
             </nav>
-
+            {% if 'active_user' not in session %}
             <div class="in-div">
                 <a href="{{url_for('authorization')}}"><p class="log-in">ავტორიზაცია</p></a>
                 <a href="{{url_for('registration')}}"><p class="sign-in">რეგისტრაცია</p></a>
             </div>
+            {% endif %}
+
+            {% if 'active_user' in session %}
+            <div class="in-div">
+                <a href="{{url_for('log_out')}}"><p class="btn-primary">გასვლა</p></a>
+            </div>
+            {% endif %}
+
 
         </header>
         <hr class="nav-line" >

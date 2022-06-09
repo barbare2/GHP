@@ -7,11 +7,18 @@
         <div class="disorder-box-wrapper">
             <div class="disorder-box">
                 <img class="frame-brain" src="{{url_for('static', filename='img/wireframe-brain.svg')}}">
-                <div class="health-div"><p class="health">მენტალური ჯანმრთელობა</p></div>
+                <div class="health-div"><p class="health">მენტალური ჯანმრთელობა (მალე დაემატება)</p></div>
             </div>
             <div class="disorder-box">
                 <img class="frame-body" src="{{url_for('static', filename='img/wireframe-body.svg')}}">
-                <a href="{{url_for('physical')}}"><div class="health-div"><p class="health">ფიზიკური ჯანმრთეობა</p></div></a>
+                {% if 'active_user' in session %}
+                <a href="{{url_for('physical')}}"><div class="health-div"><p class="health">ფიზიკური ჯანმრთელობა</p></div></a>
+                {% endif %}
+
+                {% if 'active_user' not in session %}
+                <a href="{{url_for('home')}}"><div class="health-div"><p class="health">ფიზიკური ჯანმრთელობა</p></div></a>
+                {% endif %}
+
             </div>
         </div>
 </div>
