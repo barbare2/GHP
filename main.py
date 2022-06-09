@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, session, app, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import exists
 from jinja2 import Environment, FileSystemLoader
 import requests
 from bs4 import BeautifulSoup
@@ -16,6 +17,10 @@ class Users(db.Model):
     name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
+
+# b1 = Users(name='barbare', email='barbich222@gmail.com', password='giji2')
+# db.session.add(b1)
+# db.session.commit()
 
 
 
@@ -35,7 +40,6 @@ while page < 3:
     s = soup.find('div', class_='doctor_items')
     sub_soup = s.find_all('div', class_='doctor_item_inside')
 
-
     for each in sub_soup:
         img_url = each.find('div', class_='doctor_item_l').a.attrs.get('style').split('(')[1].split(')')[0]
         img_urls.append(img_url)
@@ -54,6 +58,7 @@ while page < 3:
 
 
     page+=1
+
 
 @app.route('/')
 def home():
@@ -91,12 +96,20 @@ def registration():
             user = Users(name=Name, email=Email, password=Password)
             db.session.add(user)
             db.session.commit()
-            flash("მონაცემები დამატებულია", 'info')
+            flash("რეგისტრაცია წარმატებით დასრულდა!", 'info')
 
     return render_template('registration.html')
 
 @app.route('/authorization')
 def authorization():
+    if request.method == 'POST':
+        acc_email = request.form['registered_acc_email']
+        acc_passsword = request.form['registered_acc_password']
+        if db.session.query(Users.email).filter_by(email=acc_email) and db.session.query(Users.password).filter_by(password=acc_passsword):
+            return render_template('aboutus.html')
+        else:
+            return render_template('bookvisit.html')
+
     return render_template('authorization.html')
 
 @app.route('/success_authorization')
@@ -110,15 +123,15 @@ def success_registration():
 if __name__ == "__main__":
     app.run(debug=True)
 
-
-
-
 #
-# import sqlite3
-# conn = sqlite3.connect('users.sqlite')
 #
-# cursor = conn.cursor()
-# cursor.execute("""CREATE TABLE Users (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-#                    name varchar(100),
-#                     email varchar(50),
-#                     password varchar(10))""")
+#
+# #
+# # import sqlite3
+# # conn = sqlite3.connect('users.sqlite')
+# #
+# # cursor = conn.cursor()
+# # cursor.execute("""CREATE TABLE Users (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+# #                    name varchar(100),
+# #                     email varchar(50),
+# #                     password varchar(10))""")
