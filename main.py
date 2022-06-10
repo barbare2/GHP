@@ -4,6 +4,7 @@ from sqlalchemy.sql import exists
 from jinja2 import Environment, FileSystemLoader
 import requests
 from bs4 import BeautifulSoup
+from flask_paginate import Pagination, get_page_args
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'user'
@@ -18,14 +19,8 @@ class Users(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
 
-# b1 = Users(name='barbare', email='barbich222@gmail.com', password='giji2')
-# db.session.add(b1)
-# db.session.commit()
-#
-# print(exists)
 
-
-page = 1
+ammount_of_pages = 1
 img_urls = []
 clinic_names = []
 categ = []
@@ -34,8 +29,8 @@ clinic_ranks = []
 categories = dict({})
 keycounter = 0
 
-while page < 3:
-    url = 'https://tsamali.ge/clinics/' + str(page)
+while ammount_of_pages < 3:
+    url = 'https://tsamali.ge/clinics/' + str(ammount_of_pages)
     r = requests.get(url)
     soup = BeautifulSoup(r.text, "html.parser")
     s = soup.find('div', class_='doctor_items')
@@ -58,20 +53,44 @@ while page < 3:
         keycounter += 1
 
 
-    page+=1
+    ammount_of_pages+=1
+
+
+USERS = list(range(len(categories)))
+
+def get_users(offset=0, per_page=5):
+    return USERS[offset: offset+per_page]
 
 
 @app.route('/')
 def home():
     return render_template('index.html', img_urls=img_urls)
 
+@app.route('/book_visit')
+def book_visit():
+    page,per_page,offset = get_page_args(page_parameter="page", per_page_parameter="per_page")
+    total = len(USERS)
+    pagination_users = get_users(offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+    return render_template('bookvisit.html',
+                           USERS=pagination_users,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination,
+                           img_urls=img_urls,
+                           clinic_names= clinic_names,
+                           clinic_addresses=clinic_addresses,
+                           clinic_ranks= clinic_ranks,
+                           categories=categories,
+                           categ= categ)
+
 @app.route('/aboutus')
 def about_us():
     return render_template('aboutus.html')
-
-@app.route('/bookvisit')
-def book_visit():
-    return render_template('bookvisit.html', img_urls=img_urls, clinic_names= clinic_names, clinic_addresses=clinic_addresses, clinic_ranks= clinic_ranks, categories=categories, categ= categ )
+#
+# @app.route('/bookvisit')
+# def book_visit():
+#     return render_template('bookvisit.html', img_urls=img_urls, clinic_names= clinic_names, clinic_addresses=clinic_addresses, clinic_ranks= clinic_ranks, categories=categories, categ= categ )
 
 @app.route('/clinicinfo')
 def clinicinfo():
@@ -91,28 +110,30 @@ def registration():
         Name = request.form['name']
         Email = request.form['email']
         Password = request.form['password']
-        if not Name.isalpha():
-            flash("შეიყვანეთ მხოლოდ სახელი და გვარი", 'error')
+        if db.session.query(Users).filter_by(email=Email).first() is not None:
+            flash( "მოცემული ელექტრონული ფოსტით ექაუნთი არსებობს!", 'error')
         else:
             user = Users(name=Name, email=Email, password=Password)
             db.session.add(user)
             db.session.commit()
             flash("რეგისტრაცია წარმატებით დასრულდა!", 'info')
 
-    else : return render_template('registration.html')
+    return render_template('registration.html')
 
 @app.route('/authorization',  methods=['POST', 'GET'])
 def authorization():
     if request.method == 'POST':
         acc_email = request.form['registered_acc_email']
         acc_passsword = request.form['registered_acc_password']
-        if (db.session.query(Users.id).filter_by(email=acc_email).first()) is not None and (db.session.query(Users.id).filter_by(password=acc_passsword).first() is not None):
+        ID = db.session.query(Users.id).filter_by(email=acc_email).first()[0]
+
+        if db.session.query(Users.password).filter_by(id=ID).first()[0] == acc_passsword:
             session['active_user'] = acc_email
             return redirect(url_for('home'))
         else:
             flash("მომხმარებლის ელექტრონული ფოსტა ან პაროლი არასწორია!", 'error')
 
-    else : return render_template('authorization.html')
+    return render_template('authorization.html')
 
 @app.route('/booking_details', methods=['POST', 'GET'])
 def booking_details():
@@ -138,6 +159,8 @@ def log_out():
 @app.route('/access')
 def access():
     return render_template('access.html')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

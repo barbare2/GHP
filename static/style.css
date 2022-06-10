@@ -962,3 +962,15 @@ clear: left;
     padding: 10px 20px;
 
 }
+
+.horizontaly-centered {
+  margin: auto;
+
+}
+table {
+  border-collapse: collapse;
+  border: none;
+}
+.center_bootstrap {
+  margin: auto;
+}
