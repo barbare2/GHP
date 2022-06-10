@@ -75,7 +75,7 @@ while ammount_of_pages < 3:
 
 USERS = list(range(len(categories)))
 
-def get_users(offset=0, per_page=5):
+def get_users(offset=0, per_page=10):
     return USERS[offset: offset+per_page]
 
 
@@ -86,6 +86,7 @@ def home():
 @app.route('/book_visit')
 def book_visit():
     page,per_page,offset = get_page_args(page_parameter="page", per_page_parameter="per_page")
+    per_page = 5
     total = len(USERS)
     pagination_users = get_users(offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
@@ -104,10 +105,6 @@ def book_visit():
 @app.route('/aboutus')
 def about_us():
     return render_template('aboutus.html')
-#
-# @app.route('/bookvit')
-# # def book_visit():si
-#     return render_template('bookvisit.html', img_urls=img_urls, clinic_names= clinic_names, clinic_addresses=clinic_addresses, clinic_ranks= clinic_ranks, categories=categories, categ= categ )
 
 @app.route('/clinicinfo')
 def clinicinfo():
@@ -147,6 +144,7 @@ def physical():
 
 @app.route('/registration',  methods=['POST', 'GET'])
 def registration():
+
     if request.method == 'POST':
         Name = request.form['name']
         Email = request.form['email']
