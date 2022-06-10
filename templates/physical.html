@@ -2,15 +2,23 @@
 {% block title %} GHP {%  endblock %}
 
 {% block content %}
+
+<form method="post">
 <div class="div-gradient">
 
     <div class="Symptom-textarea-wrapper">
-        <textarea class="Symptom-textarea" placeholder="სიმპტომები"></textarea>
-        <button class="Symptom-textarea-button"> <img src="{{url_for('static', filename='icons/arrow.svg')}}"></button>
+        <input type="text" class="input" name="symptoms" required id="name" />
+         <button type="submit" class="btn-primary">შეყვანა</button>
     </div>
+
     <div class="output-logo-wrapper">
-        <div class="answer-output"></div>
+        <div class="answer-output">
+            <p><strong>{{daavadebebi}}</strong></p>
+
+        </div>
         <img src="{{url_for('static', filename='img/logo.png')}}">
     </div>
+
 </div>
+ </form>
 {% endblock %}
