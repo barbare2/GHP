@@ -6,6 +6,23 @@ import requests
 from bs4 import BeautifulSoup
 from flask_paginate import Pagination, get_page_args
 
+
+wyaro = open('GE_data.csv', 'r', encoding='utf-8_sig')
+
+dict_file = dict({})
+dict_ulti = dict({})
+
+for a in dict_file:
+    dict_ulti[a] = 0
+
+for i in wyaro:
+    ls = i.strip("\n").split(',')
+    dict_file[ls[0].strip()] = ls[1:len(ls)]
+
+for a in dict_file:
+    dict_ulti[a] = 0
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'user'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite'
@@ -58,7 +75,7 @@ while ammount_of_pages < 3:
 
 USERS = list(range(len(categories)))
 
-def get_users(offset=0, per_page=5):
+def get_users(offset=0, per_page=10):
     return USERS[offset: offset+per_page]
 
 
@@ -100,9 +117,36 @@ def clinicinfo():
 def diagnostic():
     return render_template('diagnostic.html')
 
-@app.route('/physical')
+@app.route('/physical', methods = ['POST', 'GET'])
 def physical():
-    return render_template('physical.html')
+    if request.method  == 'POST':
+        symptoms = request.form['symptoms'].split(',')
+
+        for a in dict_file:
+            dict_ulti[a] = 0
+
+        for each in symptoms:
+            for one in dict_file:
+                if each in dict_file[one] or " " + each in dict_file[one]:
+                    dict_ulti[one] += 1
+
+        list = []
+        for every in dict_ulti:
+            list.append(dict_ulti[every])
+        list2 = []
+        for all in dict_ulti:
+            if dict_ulti[all] == max(list):
+                list2.append(all + '\n')
+        daavadebebi = ','.join(list2)
+        print(dict_ulti)
+        return render_template('physical.html', daavadebebi=daavadebebi)
+
+
+
+
+    else :
+        print(request.method == 'POST')
+        return render_template('physical.html')
 
 @app.route('/registration',  methods=['POST', 'GET'])
 def registration():
