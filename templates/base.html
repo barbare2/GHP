@@ -42,13 +42,6 @@
 
 
         </header>
-        {% if 'active_user' not in session %}
-        <hr class="nav-line_0" >
-        {% endif %}
-
-        {% if 'active_user' in session %}
-        <hr class="nav-line_1" >
-        {% endif %}
 
         {% block content %} <h1></h1> {% endblock %}
 
@@ -56,7 +49,7 @@
            <div class="top-footer-wrapper">
             <div>
                 <p class="ft-textarea-title">კითხვების არსებობის შემთხვევაში მოგვწერეთ აქ</p>
-                <textarea class="ft-textarea"></textarea>
+                <input type="text" class="ft-textarea"/>
                 <p class="ft-wt"><span style="color:#ffffff;">სამუშაო საათები:</span> 08:00 - 24:00 ორშაბათი - პარასკევი</p>
             </div>
             <div class="founder-contact-wrapper">

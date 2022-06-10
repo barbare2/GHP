@@ -77,9 +77,11 @@ color: white;
     transition: all 0.2s linear 0.3s;
     padding-bottom: 5px;
     font-family: "BPG Nino Mtavruli", sans-serif;
+    text-decoration: none;
 }
 .nav-element:hover {
   border-bottom-color: white;
+  text-decoration: none;
 }
 .in-div {
   width: 318px;
@@ -112,23 +114,6 @@ color: white;
   font-family: "BPG Nino Mtavruli", sans-serif;
 }
 
-.nav-line_0 {
-  position: absolute;
-  top: 105px;
-  width: 1178px;
-  margin-left: 507px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.nav-line_1 {
-  position: absolute;
-  top: 105px;
-  width: 988px;
-  margin-left: 507px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
 
 .container_main {
   display: flex;
@@ -199,6 +184,7 @@ color: white;
     rgba(0, 0, 0, 0.25) 100%
   );
   border-radius: 50px;
+
 }
 
 .fourth-grid-item {
@@ -273,6 +259,7 @@ h3 {
   background: #d9d9d9;
   border-radius: 10px;
   margin-bottom: 24px;
+  font-size: 25px;
 }
 .ft-wt {
   font-family: "BPG Nino Mtavruli", sans-serif;
@@ -554,9 +541,14 @@ h3 {
 }
 .answer-output {
   width: 803px;
-  height: 220px;
+  height: 290px;
   border: 1px solid #00fff0;
   margin: 55px 0 0 70px;
+  border-radius: 13px;
+  padding: 25px 50px;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
 }
 .physical-logo {
   margin-right: 70px;
@@ -876,7 +868,8 @@ h3 {
   color: whitesmoke;
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 30px;
+  padding: 15px 0 15px 0;
+  text-align: center;
 }
 
 .error{
@@ -974,3 +967,20 @@ clear: left;
 /*.center_bootstrap {*/
 /*  margin: auto;*/
 /*}*/
+
+
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: #fff
+}
+
+.symptoms {
+  width: 520px;
+  height: 45px;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    border-color: #0062cc;
+}
