@@ -789,10 +789,8 @@ h3 {
   display: block;
   width: 600px;
   height: 85px;
-  /* margin-bottom: 80px; */
   font-size: 25px;
   border: none;
-  /* border-bottom: 3px solid transparent; */
 }
 .input:not(:last-child) {
   margin-bottom: 80px;
