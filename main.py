@@ -88,8 +88,8 @@ def book_visit():
 def about_us():
     return render_template('aboutus.html')
 #
-# @app.route('/bookvisit')
-# def book_visit():
+# @app.route('/bookvit')
+# # def book_visit():si
 #     return render_template('bookvisit.html', img_urls=img_urls, clinic_names= clinic_names, clinic_addresses=clinic_addresses, clinic_ranks= clinic_ranks, categories=categories, categ= categ )
 
 @app.route('/clinicinfo')

@@ -70,13 +70,13 @@
   align-items: center;
 }
 .nav-element {
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
-  border: 2px solid transparent;
-  transition: all 0.2s linear 0.3s;
-  padding-bottom: 5px;
-  font-family: "BPG Nino Mtavruli", sans-serif;
+color: white;
+    font-size: 16px;
+    font-weight: 400;
+    border: 2px solid transparent;
+    transition: all 0.2s linear 0.3s;
+    padding-bottom: 5px;
+    font-family: "BPG Nino Mtavruli", sans-serif;
 }
 .nav-element:hover {
   border-bottom-color: white;
@@ -130,7 +130,7 @@
   margin-bottom: 0;
 }
 
-.container {
+.container_main {
   display: flex;
   justify-content: space-around;
   padding-left: 70px;
@@ -963,14 +963,14 @@ clear: left;
 
 }
 
-.horizontaly-centered {
-  margin: auto;
+/*.horizontaly-centered {*/
+/*  margin: auto;*/
 
-}
-table {
-  border-collapse: collapse;
-  border: none;
-}
-.center_bootstrap {
-  margin: auto;
-}
+/*}*/
+/*table {*/
+/*  border-collapse: collapse;*/
+/*  border: none;*/
+/*}*/
+/*.center_bootstrap {*/
+/*  margin: auto;*/
+/*}*/
