@@ -1,0 +1,61 @@
+{%  extends 'base.html' %}
+{% block title %} დაჯავშნა {%  endblock %}
+
+{% block content %}
+<div class="container pagination-lg center_bootstrap">
+
+    <div class="table-responsive">
+        <table class="table table-hover" >
+            <tbody>
+            {% for i in USERS %}
+            <tr>
+                <td>
+                    <div class="div-gradient">
+                    <div class="clinic-info-wrapper">
+            <div class="photo-title-wrapper">
+                <div class="img-rate-wrapper">
+                    <img class='clinic_img' src={{ img_urls[i] }}>
+                    <div class="starrate-wrapper">
+                         <p class="ranking"> {{ clinic_ranks[i] }} </p>
+
+                        <img class='star' src="{{url_for('static', filename='img/star.png')}}">
+                    </div>
+                </div>
+                <div class="clinic-title-wrapper">
+                    <h class="clinic-title">{{ clinic_names[i] }}</h>
+                    <div class="clinic-services-wrapper">
+
+                        {% for each in categories[i] %}
+                                <p class="clinic-services">{{each}}</p>
+                            {% endfor %}
+                    </div>
+                    <div class="adress-button-wrapper">
+                        <div class="misamarti-wrapper">
+                            <h class="misamarti">მისამართი</h>
+                            <p class="misamarti-text">{{ clinic_addresses[i] }}</p>
+                        </div>
+                        <div class="srulad-button">
+                            <a href="{{url_for('booking_details')}}"><p class="srulad">დაჯავშნა</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        </div>
+                </td>
+                <td>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}}
+
+            {{pagination.links}}
+            </tbody>
+        </table>
+        {{pagination.links}}
+    </div>
+</div>
+
+{% endblock %}
