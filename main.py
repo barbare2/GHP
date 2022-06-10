@@ -3,33 +3,40 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import exists
 from jinja2 import Environment, FileSystemLoader
 import requests
+from flask_admin import Admin
+from flask_admin.contrib. sqla import ModelView
 from bs4 import BeautifulSoup
 from flask_paginate import Pagination, get_page_args
 
 
-wyaro = open('GE_data.csv', 'r', encoding='utf-8_sig')
-
-dict_file = dict({})
-dict_ulti = dict({})
-
-for a in dict_file:
-    dict_ulti[a] = 0
-
-for i in wyaro:
-    ls = i.strip("\n").split(',')
-    dict_file[ls[0].strip()] = ls[1:len(ls)]
-
-for a in dict_file:
-    dict_ulti[a] = 0
 
 
+#app config
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'user'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
 
+
+
+#AI
+wyaro = open('GE_data.csv', 'r', encoding='utf-8_sig')
+dict_file = dict({})
+dict_ulti = dict({})
+for a in dict_file:
+    dict_ulti[a] = 0
+for i in wyaro:
+    ls = i.strip("\n").split(',')
+    dict_file[ls[0].strip()] = ls[1:len(ls)]
+for a in dict_file:
+    dict_ulti[a] = 0
+
+
+
+
+#sql alchemy
+db = SQLAlchemy(app)
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
@@ -37,6 +44,9 @@ class Users(db.Model):
     password = db.Column(db.String(80), nullable=False)
 
 
+
+
+#parsing
 ammount_of_pages = 1
 img_urls = []
 clinic_names = []
@@ -68,20 +78,37 @@ while ammount_of_pages < 3:
 
         categories[keycounter] = cat_list
         keycounter += 1
-
-
     ammount_of_pages+=1
 
 
-USERS = list(range(len(categories)))
 
+
+#paging
+USERS = list(range(len(categories)))
 def get_users(offset=0, per_page=10):
     return USERS[offset: offset+per_page]
 
 
+
+
+# admin page view
+db = SQLAlchemy(app)
+class MyModelView(ModelView):
+    def is_accessible (self):
+        return 'active_user' in session and \
+               db.session.query(Users.id).filter_by(id=10).first()[0]
+
+admin = Admin(app)
+admin.add_view(MyModelView(Users, db.session))
+
+
+
+
+# app routes
 @app.route('/')
 def home():
     return render_template('index.html', img_urls=img_urls)
+
 
 @app.route('/book_visit')
 def book_visit():
@@ -102,17 +129,21 @@ def book_visit():
                            categories=categories,
                            categ= categ)
 
+
 @app.route('/aboutus')
 def about_us():
     return render_template('aboutus.html')
+
 
 @app.route('/clinicinfo')
 def clinicinfo():
     return render_template('clinic-full-info.html')
 
+
 @app.route('/diagnostic')
 def diagnostic():
     return render_template('diagnostic.html')
+
 
 @app.route('/physical', methods = ['POST', 'GET'])
 def physical():
@@ -142,9 +173,9 @@ def physical():
         print(request.method == 'POST')
         return render_template('physical.html')
 
+
 @app.route('/registration',  methods=['POST', 'GET'])
 def registration():
-
     if request.method == 'POST':
         Name = request.form['name']
         Email = request.form['email']
@@ -158,6 +189,7 @@ def registration():
             flash("რეგისტრაცია წარმატებით დასრულდა!", 'info')
 
     return render_template('registration.html')
+
 
 @app.route('/authorization',  methods=['POST', 'GET'])
 def authorization():
@@ -175,6 +207,7 @@ def authorization():
             flash( "მომხმარებლის ელექტრონული ფოსტა არ არის რეგისტრირებული!", 'error' )
 
     return render_template('authorization.html')
+
 
 @app.route('/booking_details', methods=['POST', 'GET'])
 def booking_details():
@@ -197,10 +230,10 @@ def log_out():
     session.pop( 'active_user', None )
     return render_template('index.html')
 
+
 @app.route('/access')
 def access():
     return render_template('access.html')
-
 
 
 if __name__ == "__main__":
