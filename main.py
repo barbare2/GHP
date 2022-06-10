@@ -75,7 +75,7 @@ while ammount_of_pages < 3:
 
 USERS = list(range(len(categories)))
 
-def get_users(offset=0, per_page=10):
+def get_users(offset=0, per_page=5):
     return USERS[offset: offset+per_page]
 
 
@@ -140,9 +140,6 @@ def physical():
         daavadebebi = ','.join(list2)
         print(dict_ulti)
         return render_template('physical.html', daavadebebi=daavadebebi)
-
-
-
 
     else :
         print(request.method == 'POST')

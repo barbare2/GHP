@@ -2,15 +2,16 @@
 {% block title %} დაჯავშნა {%  endblock %}
 
 {% block content %}
-<div class="container pagination-lg center_bootstrap">
+<div class="div-gradient">
+<div class="container pagination-lg ">
 
-    <div class="table-responsive">
-        <table class="table table-hover" >
+    <div class="table-responsive ">
+        <table class="table table-hover">
             <tbody>
             {% for i in USERS %}
             <tr>
                 <td>
-                    <div class="div-gradient">
+
                     <div class="clinic-info-wrapper">
             <div class="photo-title-wrapper">
                 <div class="img-rate-wrapper">
@@ -41,7 +42,7 @@
                 </div>
             </div>
         </div>
-                        </div>
+
                 </td>
                 <td>
 
@@ -57,5 +58,6 @@
         {{pagination.links}}
     </div>
 </div>
+    </div>
 
 {% endblock %}

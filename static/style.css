@@ -970,7 +970,7 @@ clear: left;
 
 
 
-a:link, a:visited, a:hover, a:active {
+a:link, a:hover {
   text-decoration: none;
   color: #fff
 }
