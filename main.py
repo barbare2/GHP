@@ -99,7 +99,7 @@ def registration():
             db.session.commit()
             flash("რეგისტრაცია წარმატებით დასრულდა!", 'info')
 
-    return render_template('registration.html')
+    else : return render_template('registration.html')
 
 @app.route('/authorization',  methods=['POST', 'GET'])
 def authorization():
@@ -112,7 +112,7 @@ def authorization():
         else:
             flash("მომხმარებლის ელექტრონული ფოსტა ან პაროლი არასწორია!", 'error')
 
-    return render_template('authorization.html')
+    else : return render_template('authorization.html')
 
 @app.route('/booking_details', methods=['POST', 'GET'])
 def booking_details():
