@@ -169,13 +169,15 @@ def authorization():
     if request.method == 'POST':
         acc_email = request.form['registered_acc_email']
         acc_passsword = request.form['registered_acc_password']
-        ID = db.session.query(Users.id).filter_by(email=acc_email).first()[0]
-
-        if db.session.query(Users.password).filter_by(id=ID).first()[0] == acc_passsword:
-            session['active_user'] = acc_email
-            return redirect(url_for('home'))
+        if db.session.query(Users.id).filter_by(email=acc_email).first() is not None:
+            ID = db.session.query( Users.id ).filter_by( email=acc_email ).first()[0]
+            if db.session.query( Users.password ).filter_by( id=ID ).first()[0] == acc_passsword:
+                session['active_user'] = acc_email
+                return redirect( url_for( 'home' ) )
+            else:
+                flash( "მომხმარებლის პაროლი არასწორია!", 'error' )
         else:
-            flash("მომხმარებლის ელექტრონული ფოსტა ან პაროლი არასწორია!", 'error')
+            flash( "მომხმარებლის ელექტრონული ფოსტა არ არის რეგისტრირებული!", 'error' )
 
     return render_template('authorization.html')
 
