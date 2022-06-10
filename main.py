@@ -72,7 +72,7 @@ def book_visit():
     total = len(USERS)
     pagination_users = get_users(offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
-    return render_template('bookvisit.html',
+    return render_template('book_visit.html',
                            USERS=pagination_users,
                            page=page,
                            per_page=per_page,
