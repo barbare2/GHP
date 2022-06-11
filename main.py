@@ -111,7 +111,6 @@ def home():
 @app.route('/book_visit')
 def book_visit():
     page,per_page,offset = get_page_args(page_parameter="page", per_page_parameter="per_page")
-    per_page = 5
     total = len(USERS)
     pagination_users = get_users(offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
