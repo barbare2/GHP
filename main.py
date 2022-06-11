@@ -1,3 +1,4 @@
+
 from flask import Flask, redirect, url_for, render_template, request, session, app, flash
 from flask_sqlalchemy import SQLAlchemy
 import requests
@@ -6,6 +7,7 @@ from flask_admin.contrib. sqla import ModelView
 from bs4 import BeautifulSoup
 from flask_paginate import Pagination, get_page_args
 from werkzeug.security import generate_password_hash, check_password_hash
+from time import time, ctime
 
 
 
@@ -14,7 +16,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'user'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite'
+app.config['SQLALCHEMY_BINDS'] = {'booking': "sqlite:///booking.sqlite"}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 
 
@@ -41,6 +45,18 @@ class Users(db.Model):
     name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
+
+
+class booking(db.Model):
+    __bind_key__ = 'booking'
+    id = db.Column(db.String(100), primary_key=True, nullable=False)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    clinic = db.Column(db.String(100), unique=True, nullable=False)
+    doctor = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    date = db.Column(db.String(100), unique=True, nullable=False)
+    time = db.Column(db.String(100), unique=True, nullable=False)
+
 
 
 
@@ -208,20 +224,35 @@ def authorization():
     return render_template('authorization.html')
 
 
+# class booking(db.Model):
+#     __bind_key__ = 'booking'
+#     name = db.Column(db.String(100), primary_key=True, nullable=False)
+#     clinic = db.Column(db.String(100), unique=True, nullable=False)
+#     doctor = db.Column(db.String(100), unique=True, nullable=False)
+#     email = db.Column(db.String(100), unique=True, nullable=False)
+#     date = db.Column(db.String(100), unique=True, nullable=False)
+#     time = db.Column(db.String(100), unique=True, nullable=False)
+
 @app.route('/booking_details', methods=['POST', 'GET'])
 def booking_details():
     if request.method == 'POST':
+        id = request.form['id']
         name = request.form['name']
-        mail = request.form['email']
-        docname = request.form['doctor']
+        clinic = request.form['clinic']
+        doctor = request.form['doctor']
+        email = request.form['email']
         date = request.form['date']
         time = request.form['time']
-        if name=='' or mail=='' or docname=='' or date=='' or time=='':
+        if name=='' or clinic=='' or email=='' or doctor=='' or date=='' or time=='':
             flash("აუცილებლად შეავსეთ ყველა ველი", 'error')
         else:
+            b_d = booking(id=int(id), name=name, clinic= clinic, doctor=doctor, email=email, date=str(date), time=str(time))
+            db.session.add(b_d)
+            db.session.commit()
             flash("თქვენ წარმატებით დაჯავშნეთ!", 'info')
 
     return render_template('booking_details.html')
+
 
 
 @app.route('/logout')
