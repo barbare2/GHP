@@ -5,6 +5,7 @@ from flask_admin import Admin
 from flask_admin.contrib. sqla import ModelView
 from bs4 import BeautifulSoup
 from flask_paginate import Pagination, get_page_args
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
@@ -177,7 +178,8 @@ def registration():
         if db.session.query(Users).filter_by(email=Email).first() is not None:
             flash( "მოცემული ელექტრონული ფოსტით ექაუნთი არსებობს!", 'error')
         else:
-            user = Users(name=Name, email=Email, password=Password)
+            hashed_password = generate_password_hash(Password)
+            user = Users(name=Name, email=Email, password=hashed_password)
             db.session.add(user)
             db.session.commit()
             flash("რეგისტრაცია წარმატებით დასრულდა!", 'info')
@@ -190,11 +192,11 @@ def authorization():
     if request.method == 'POST':
         acc_email = request.form['registered_acc_email']
         acc_passsword = request.form['registered_acc_password']
-        if acc_email == 'kotejaparidze9@gmail.com' and acc_passsword == 'barbare2':
+        if acc_email == 'kotejaparidze9@gmail.com' and check_password_hash(db.session.query(Users.password).filter_by(email=acc_email).first()[0], 'barbare2'):
             session['admin'] = acc_email
         if db.session.query(Users.id).filter_by(email=acc_email).first() is not None:
             ID = db.session.query( Users.id ).filter_by( email=acc_email ).first()[0]
-            if db.session.query( Users.password ).filter_by( id=ID ).first()[0] == acc_passsword:
+            if check_password_hash(db.session.query( Users.password ).filter_by( id=ID ).first()[0],acc_passsword):
                 session['active_user'] = acc_email
                 return redirect( url_for( 'home' ) )
 
