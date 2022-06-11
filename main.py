@@ -57,7 +57,7 @@ class booking(db.Model):
     date = db.Column(db.String(100), unique=True, nullable=False)
     time = db.Column(db.String(100), unique=True, nullable=False)
 
-
+db.create_all('booking')
 
 
 
@@ -224,14 +224,7 @@ def authorization():
     return render_template('authorization.html')
 
 
-# class booking(db.Model):
-#     __bind_key__ = 'booking'
-#     name = db.Column(db.String(100), primary_key=True, nullable=False)
-#     clinic = db.Column(db.String(100), unique=True, nullable=False)
-#     doctor = db.Column(db.String(100), unique=True, nullable=False)
-#     email = db.Column(db.String(100), unique=True, nullable=False)
-#     date = db.Column(db.String(100), unique=True, nullable=False)
-#     time = db.Column(db.String(100), unique=True, nullable=False)
+
 
 @app.route('/booking_details', methods=['POST', 'GET'])
 def booking_details():
