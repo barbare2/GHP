@@ -1,7 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request, session, app, flash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import exists
-from jinja2 import Environment, FileSystemLoader
 import requests
 from flask_admin import Admin
 from flask_admin.contrib. sqla import ModelView
@@ -123,8 +121,7 @@ def book_visit():
                            clinic_names= clinic_names,
                            clinic_addresses=clinic_addresses,
                            clinic_ranks= clinic_ranks,
-                           categories=categories,
-                           categ= categ)
+                           categories=categories)
 
 
 @app.route('/aboutus')
@@ -231,7 +228,7 @@ def log_out():
         session.pop( 'active_user')
     if 'admin' in session:
         session.pop('admin')
-    return render_template('index.html')
+    return redirect( url_for( 'home' ) )
 
 
 @app.route('/access')
