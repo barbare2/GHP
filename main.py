@@ -92,14 +92,12 @@ def get_users(offset=0, per_page=10):
 
 
 # admin page view
-db = SQLAlchemy(app)
-class MyModelView(ModelView):
+class MyView(ModelView):
     def is_accessible (self):
-        return 'active_user' in session and \
-               db.session.query(Users.id).filter_by(id=10).first()[0]
+        return 'admin' in session
 
 admin = Admin(app)
-admin.add_view(MyModelView(Users, db.session))
+admin.add_view(MyView(Users, db.session))
 
 
 
@@ -196,11 +194,14 @@ def authorization():
     if request.method == 'POST':
         acc_email = request.form['registered_acc_email']
         acc_passsword = request.form['registered_acc_password']
+        if acc_email == 'kotejaparidze9@gmail.com' and acc_passsword == 'barbare2':
+            session['admin'] = acc_email
         if db.session.query(Users.id).filter_by(email=acc_email).first() is not None:
             ID = db.session.query( Users.id ).filter_by( email=acc_email ).first()[0]
             if db.session.query( Users.password ).filter_by( id=ID ).first()[0] == acc_passsword:
                 session['active_user'] = acc_email
                 return redirect( url_for( 'home' ) )
+
             else:
                 flash( "მომხმარებლის პაროლი არასწორია!", 'error' )
         else:
@@ -227,7 +228,10 @@ def booking_details():
 
 @app.route('/logout')
 def log_out():
-    session.pop( 'active_user', None )
+    if 'active_user' in session:
+        session.pop( 'active_user')
+    if 'admin' in session:
+        session.pop('admin')
     return render_template('index.html')
 
 
