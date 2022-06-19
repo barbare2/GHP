@@ -73,8 +73,8 @@
             </div>
             <div class="cover">
                 <div class="scroll-images">
-                    {% for i in img_urls %}
-                    <div class="child"><img class="child-img" src="{{ i }}" alt=""></div>
+                    {% for each in range(30) %}
+                    <div class="child"><img class="child-img" src={{ db.session.query(clinic_infos.img_url).all()[each][0] }} alt=logos""></div>
                     {% endfor %}
 
                 </div>

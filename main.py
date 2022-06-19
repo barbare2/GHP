@@ -1,13 +1,9 @@
-
 from flask import Flask, redirect, url_for, render_template, request, session, app, flash
 from flask_sqlalchemy import SQLAlchemy
-import requests
 from flask_admin import Admin
 from flask_admin.contrib. sqla import ModelView
-from bs4 import BeautifulSoup
-from flask_paginate import Pagination, get_page_args
 from werkzeug.security import generate_password_hash, check_password_hash
-from time import time, ctime
+
 
 
 
@@ -16,7 +12,7 @@ from time import time, ctime
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'user'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite'
-app.config['SQLALCHEMY_BINDS'] = {'booking': "sqlite:///booking.sqlite"}
+app.config['SQLALCHEMY_BINDS'] = {'booking': "sqlite:///booking.sqlite", 'clinic_infos': 'sqlite:///clinic_infos.sqlite'}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -57,53 +53,15 @@ class booking(db.Model):
     date = db.Column(db.String(100), unique=True, nullable=False)
     time = db.Column(db.String(100), unique=True, nullable=False)
 
-db.create_all('booking')
 
-
-
-#parsing
-ammount_of_pages = 1
-img_urls = []
-clinic_names = []
-categ = []
-clinic_addresses = []
-clinic_ranks = []
-categories = dict({})
-keycounter = 0
-
-while ammount_of_pages < 3:
-    url = 'https://tsamali.ge/clinics/' + str(ammount_of_pages)
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text, "html.parser")
-    s = soup.find('div', class_='doctor_items')
-    sub_soup = s.find_all('div', class_='doctor_item_inside')
-
-    for each in sub_soup:
-        img_url = each.find('div', class_='doctor_item_l').a.attrs.get('style').split('(')[1].split(')')[0]
-        img_urls.append(img_url)
-        name = each.find('div', class_='doctor_item_r').a.text
-        clinic_names.append(name)
-        address = each.find('div', class_='doctor_clinic_location').text
-        clinic_addresses.append(address)
-        rank = each.find('div', class_='item_rank_text').text
-        clinic_ranks.append(rank)
-        c = each.find( 'div', class_='item_time3' )
-        kategoriebi = c.ul.text.strip()
-        cat_list = kategoriebi.split('\n')[0:3]
-
-        categories[keycounter] = cat_list
-        keycounter += 1
-    ammount_of_pages+=1
-
-
-
-
-#paging
-USERS = list(range(len(categories)))
-def get_users(offset=0, per_page=10):
-    return USERS[offset: offset+per_page]
-
-
+class clinic_infos(db.Model):
+    __bind_key__ = 'clinic_infos'
+    ID = db.Column(db.String(100), primary_key=True, nullable=False)
+    img_url = db.Column(db.String(100), unique=True, nullable=False)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    address = db.Column(db.String(100), unique=True, nullable=False)
+    rank = db.Column(db.INT, unique=True, nullable=False)
+    categories = db.Column(db.String(200), unique=True, nullable=False)
 
 
 # admin page view
@@ -116,29 +74,15 @@ admin.add_view(MyView(Users, db.session))
 
 
 
-
 # app routes
 @app.route('/')
 def home():
-    return render_template('index.html', img_urls=img_urls)
+    return render_template('index.html', clinic_infos=clinic_infos, db=db)
 
 
 @app.route('/book_visit')
 def book_visit():
-    page,per_page,offset = get_page_args(page_parameter="page", per_page_parameter="per_page")
-    total = len(USERS)
-    pagination_users = get_users(offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
-    return render_template('book_visit.html',
-                           USERS=pagination_users,
-                           page=page,
-                           per_page=per_page,
-                           pagination=pagination,
-                           img_urls=img_urls,
-                           clinic_names= clinic_names,
-                           clinic_addresses=clinic_addresses,
-                           clinic_ranks= clinic_ranks,
-                           categories=categories)
+    return render_template('book_visit.html', clinic_infos=clinic_infos, db=db)
 
 
 @app.route('/aboutus')

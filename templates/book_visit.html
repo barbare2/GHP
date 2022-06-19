@@ -3,61 +3,44 @@
 
 {% block content %}
 <div class="div-gradient">
-<div class="container pagination-lg ">
 
-    <div class="table-responsive ">
-        <table class="table table-hover">
-            <tbody>
-            {% for i in USERS %}
-            <tr>
-                <td>
+        <h1 class="clinics">კლინიკები</h1>
 
-                    <div class="clinic-info-wrapper">
+    {% for each in range(30) %}
+        <div class="clinic-info-wrapper">
             <div class="photo-title-wrapper">
-                <div class="img-rate-wrapper">
-                    <img class='clinic_img' src={{ img_urls[i] }}>
-                    <div class="starrate-wrapper">
-                         <p class="ranking"> {{ clinic_ranks[i] }} </p>
 
-                        <img class='star' src="{{url_for('static', filename='img/star.png')}}">
+                <div class="img-rate-wrapper">
+                    <img class='clinic_logos' src={{ db.session.query(clinic_infos.img_url).all()[each][0] }}>
+                    <div class="starrate-wrapper">
+                        <p class="ranks"> {{ db.session.query(clinic_infos.rank).all()[each][0] }} </p>
+                        <img src="../static/img/star.svg">
+                        <img src="../static/img/star.svg">
+                        <img src="../static/img/star.svg">
+                        <img src="../static/img/star.svg">
+                        <img src="../static/img/star.svg">
                     </div>
                 </div>
                 <div class="clinic-title-wrapper">
-                    <h class="clinic-title">{{ clinic_names[i] }}</h>
+                    <h class="clinic-title">{{ db.session.query(clinic_infos.name).all()[each][0]  }}</h>
                     <div class="clinic-services-wrapper">
 
-                        {% for each in categories[i] %}
-                                <p class="clinic-services">{{each}}</p>
-                            {% endfor %}
+                        <p class="clinic-services">{{ db.session.query(clinic_infos.categories).all()[each][0] }}</p>
+
                     </div>
                     <div class="adress-button-wrapper">
                         <div class="misamarti-wrapper">
                             <h class="misamarti">მისამართი</h>
-                            <p class="misamarti-text">{{ clinic_addresses[i] }}</p>
+                            <p class="misamarti-text"> {{ db.session.query(clinic_infos.address).all()[each][0]  }}</p>
                         </div>
                         <div class="srulad-button">
-                            <a href="{{url_for('booking_details')}}"><p class="srulad">დაჯავშნა</p></a>
+                            <a href="clinic-full-info.html"><p class="srulad">სრულად</p></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-                </td>
-                <td>
-
-
-                </td>
-
-            </tr>
-            {% endfor %}}
-
-            {{pagination.links}}
-            </tbody>
-        </table>
-        {{pagination.links}}
-    </div>
-</div>
-    </div>
+{% endfor %}
+        </div>
 
 {% endblock %}
